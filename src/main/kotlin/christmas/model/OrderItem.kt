@@ -1,27 +1,46 @@
-package christmas.model
+import christmas.model.MenuType
 
 class OrderItem(
     private val menuName: String?,
     private val amount: Int?
-) {
-    private var menuType : String
+) : Comparable<OrderItem> {
+
+    private var menuType: String? = null
 
     init {
         require(isParametersNotNull())
         require(isAmountVariableInRange())
         require(isVariableMenu())
 
-        menuType = calculateMenuCategory()!!
+        menuType = calculateMenuCategory()
     }
 
-    fun isBeverage() : Boolean = if (menuType == "Beverage") true else false
+    override fun compareTo(other: OrderItem): Int =
+        when {
+            this.menuType == other.menuType -> 0
+            else -> 1
+        }
 
-    private fun isParametersNotNull() = if(menuName != null && amount != null) true else false
+    fun isBeverage(): Boolean = menuType == "Beverage"
 
-    private fun isAmountVariableInRange() = if(amount !! >= 1 && amount <= 20) true else false
+    private fun isParametersNotNull() = menuName != null && amount != null
 
-    private fun isVariableMenu() = MenuType.isMenuExists(menuName!!)
+    private fun isAmountVariableInRange() = amount in 1..20
 
-    private fun calculateMenuCategory() = MenuType.getMenuCategory(menuName!!)
+    private fun isVariableMenu() = menuName?.let { MenuType.isMenuExists(it) } ?: false
 
+    private fun calculateMenuCategory() = menuName?.let { MenuType.getMenuCategory(it) }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as OrderItem
+
+        return menuName == other.menuName
+    }
+
+    override fun hashCode(): Int {
+        return menuName?.hashCode() ?: 0
+    }
 }

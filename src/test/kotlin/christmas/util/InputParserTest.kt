@@ -22,6 +22,12 @@ class InputParserTest {
         assertThrows<IllegalArgumentException> { InputParser.parseOrder(input) }
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = ["타파스-1,타파스-2"])
+    fun `메뉴 중복 입력`(input: String){
+        assertThrows<IllegalArgumentException> { InputParser.parseOrder(input) }
+    }
+
 
 
 }

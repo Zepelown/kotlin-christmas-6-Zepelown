@@ -1,5 +1,7 @@
 package christmas.model
 
+import OrderItem
+
 class Order(private val order: List<OrderItem>) {
 
     init {

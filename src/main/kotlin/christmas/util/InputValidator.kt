@@ -1,7 +1,6 @@
 package christmas.util
 
 import christmas.model.Date
-import christmas.model.OrderItem
 import christmas.model.Order
 
 object InputValidator {

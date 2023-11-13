@@ -1,7 +1,7 @@
 package christmas.util
 
+import OrderItem
 import christmas.model.Order
-import christmas.model.OrderItem
 
 object InputParser {
     fun parseOrder(input: String): Order {

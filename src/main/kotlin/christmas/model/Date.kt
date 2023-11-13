@@ -3,7 +3,7 @@ package christmas.model
 class Date(private val date: Int?) {
     private val dayOfWeek : DayOfWeek = calculateDayOfWeek()
     init {
-        requireNotNull(date)
+        require(!isNull())
         require(isVariableInRange())
     }
 
@@ -24,7 +24,7 @@ class Date(private val date: Int?) {
     }
 
     private fun calculateDayOfWeek() : DayOfWeek {
-        val remainderAfter7Division = date!! % 7
+        val remainderAfter7Division = date?.rem(7)
         return when(remainderAfter7Division){
             0 -> DayOfWeek.THURSDAY
             1 -> DayOfWeek.FRIDAY
@@ -37,6 +37,8 @@ class Date(private val date: Int?) {
         }
     }
     private fun isVariableInRange() = if(date!! >= 1 && date <= 31) true else false
+
+    private fun isNull() = if(date == null) true else false
 
     enum class DayOfWeek(){
         MONDAY,

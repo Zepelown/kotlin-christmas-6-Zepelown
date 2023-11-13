@@ -2,7 +2,7 @@ package christmas.util
 
 import christmas.model.Date
 
-object Validator {
+object InputValidator {
     fun validateDate(date : Int?) : Boolean{
         try {
             Date(date)

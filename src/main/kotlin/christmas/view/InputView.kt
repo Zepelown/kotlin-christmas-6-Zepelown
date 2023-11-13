@@ -17,7 +17,7 @@ class InputView {
 
     fun readOrder() : Order{
         val order : Order
-        val input = Console.readLine().split(",")
+        val input = Console.readLine()
         try{
             order = InputParser.parseOrder(input)
         } catch (e : IllegalArgumentException){

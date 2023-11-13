@@ -1,8 +1,6 @@
-package christmas
+package christmas.util
 
-import christmas.util.InputValidator
 import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 

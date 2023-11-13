@@ -1,5 +1,8 @@
 package christmas
 
 fun main() {
-    TODO("프로그램 구현")
+    startEventPlanner()
+}
+private fun startEventPlanner(){
+    val eventPlanner = EventPlanner()
 }

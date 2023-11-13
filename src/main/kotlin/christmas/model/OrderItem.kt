@@ -23,6 +23,8 @@ class OrderItem(
 
     fun isBeverage(): Boolean = menuType == "Beverage"
 
+    fun getAmount() : Int = amount!!
+
     private fun isParametersNotNull() = menuName != null && amount != null
 
     private fun isAmountVariableInRange() = amount in 1..20

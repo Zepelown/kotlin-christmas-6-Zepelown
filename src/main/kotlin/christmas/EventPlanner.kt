@@ -14,10 +14,16 @@ class EventPlanner {
     fun startPlanning(){
         outputView.printStartMessage()
         readDate()
+        readOrder()
     }
 
     private fun readDate(){
         outputView.printDateInputMessage()
         val date = inputView.readDate()
+    }
+
+    private fun readOrder() {
+        outputView.printOrderInputMessage()
+        val order = inputView.readOrder()
     }
 }

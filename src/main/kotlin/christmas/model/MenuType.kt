@@ -32,6 +32,16 @@ sealed class MenuType {
                     Dessert.values().any { it.menuName == menuName } ||
                     Beverage.values().any { it.menuName == menuName }
         }
+        fun getMenuCategory(menuName: String): String? {
+            return when {
+                Appetizer.values().any { it.menuName == menuName } -> "Appetizer"
+                MainDish.values().any { it.menuName == menuName } -> "MainDish"
+                Dessert.values().any { it.menuName == menuName } -> "Dessert"
+                Beverage.values().any { it.menuName == menuName } -> "Beverage"
+                else -> null
+            }
+        }
+
     }
 }
 

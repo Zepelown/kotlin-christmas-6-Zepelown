@@ -4,13 +4,16 @@ class Order(private val order: List<OrderItem>) {
 
     init {
         require(!hasDuplicateMenu())
+        require(!hasOnlyBeverageMenu())
     }
 
     private fun hasDuplicateMenu(): Boolean = order.size != order.toSet().size
-
-    //TODO
-    private fun hasOnlyDrinkMenu()  {
-
+    private fun hasOnlyBeverageMenu() : Boolean {
+        order.forEach {
+            if(!it.isBeverage())
+                return false
+        }
+        return true
     }
 
 

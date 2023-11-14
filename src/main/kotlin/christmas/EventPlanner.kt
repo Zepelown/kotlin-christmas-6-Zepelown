@@ -32,7 +32,7 @@ class EventPlanner {
 
     private fun displayEventBenefits(date: Date, order: Order){
         outputView.printEventBenefitsTitleMessage(date)
-        println()
         outputView.printOrder(order)
+        outputView.printTotalCost(order)
     }
 }

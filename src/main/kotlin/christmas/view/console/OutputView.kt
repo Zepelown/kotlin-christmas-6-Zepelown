@@ -3,6 +3,7 @@ package christmas.view.console
 import OrderItem
 import christmas.model.Date
 import christmas.model.Order
+import christmas.util.StringFormatter
 
 class OutputView {
     fun printStartMessage(){
@@ -22,10 +23,15 @@ class OutputView {
     }
 
     fun printOrder(order: Order){
-        println("<주문 메뉴>")
-        order.getOrder().forEach{
+        println("\n<주문 메뉴>")
+        order.getOrderItems().forEach{
             printOrderItem(it)
         }
+    }
+
+    fun printTotalCost(order: Order){
+        println("\n<할인 전 총주문 금액>")
+        println(StringFormatter.formatIntToCurrencyString(order.getTotalCost()))
     }
 
     private fun printOrderItem(orderItem : OrderItem){

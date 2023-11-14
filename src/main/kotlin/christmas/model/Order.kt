@@ -12,7 +12,9 @@ class Order(private val order: List<OrderItem>) {
         totalCost = calculateTotalCost()
     }
 
-    fun getOrder() : List<OrderItem> = order
+    fun getOrderItems() : List<OrderItem> = order
+
+    fun getTotalCost() : Int = totalCost
 
     private fun hasDuplicateMenu(): Boolean = order.size != order.toSet().size
     private fun hasOnlyBeverageMenu() : Boolean {

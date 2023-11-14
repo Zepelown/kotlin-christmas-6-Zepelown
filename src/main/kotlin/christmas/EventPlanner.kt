@@ -2,8 +2,8 @@ package christmas
 
 import christmas.model.Date
 import christmas.model.Order
-import christmas.view.InputView
-import christmas.view.OutputView
+import christmas.view.console.InputView
+import christmas.view.console.OutputView
 
 class EventPlanner {
     private val inputView = InputView()

@@ -38,9 +38,20 @@ sealed class MenuType {
                 MainDish.values().any { it.menuName == menuName } -> "MainDish"
                 Dessert.values().any { it.menuName == menuName } -> "Dessert"
                 Beverage.values().any { it.menuName == menuName } -> "Beverage"
-                else -> null
+                else -> throw IllegalArgumentException()
             }
         }
+
+        fun getMenuCost(menuName: String): Int {
+            return when {
+                Appetizer.values().any { it.menuName == menuName } -> Appetizer.values().first { it.menuName == menuName }.cost
+                MainDish.values().any { it.menuName == menuName } -> MainDish.values().first { it.menuName == menuName }.cost
+                Dessert.values().any { it.menuName == menuName } -> Dessert.values().first { it.menuName == menuName }.cost
+                Beverage.values().any { it.menuName == menuName } -> Beverage.values().first { it.menuName == menuName }.cost
+                else -> throw IllegalArgumentException()
+            }
+        }
+
 
     }
 }

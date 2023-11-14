@@ -20,11 +20,15 @@ class OrderItem(
             else -> 1
         }
 
-    fun isBeverage(): Boolean = menuCategory == "Beverage"
+
 
     fun getAmount() : Int = amount!!
 
     fun getMenuName() : String = menuName!!
+
+    fun getMenuCost() : Int = MenuType.getMenuCost(menuName!!)
+
+    fun isBeverage(): Boolean = menuCategory == "Beverage"
 
     private fun isParametersNotNull() = menuName != null && amount != null
 

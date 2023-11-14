@@ -7,6 +7,8 @@ class Date(private val date: Int?) {
         require(isVariableInRange())
     }
 
+    fun getDate() : Int = date!!
+
     fun isWeekday() : Boolean{
         if(dayOfWeek in DayOfWeek.SUNDAY .. DayOfWeek.THURSDAY) {
             return true

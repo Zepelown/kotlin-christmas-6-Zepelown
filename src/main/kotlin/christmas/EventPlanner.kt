@@ -1,5 +1,7 @@
 package christmas
 
+import christmas.model.Date
+import christmas.model.Order
 import christmas.view.InputView
 import christmas.view.OutputView
 
@@ -13,17 +15,24 @@ class EventPlanner {
 
     fun startPlanning(){
         outputView.printStartMessage()
-        readDate()
-        readOrder()
+        val date = readDate()
+        val order = readOrder()
+        displayEventBenefits(date, order)
     }
 
-    private fun readDate(){
+    private fun readDate() : Date {
         outputView.printDateInputMessage()
-        val date = inputView.readDate()
+        return inputView.readDate()
     }
 
-    private fun readOrder() {
+    private fun readOrder() : Order {
         outputView.printOrderInputMessage()
-        val order = inputView.readOrder()
+        return inputView.readOrder()
+    }
+
+    private fun displayEventBenefits(date: Date, order: Order){
+        outputView.printEventBenefitsTitleMessage(date)
+        println()
+        outputView.printOrder(order)
     }
 }

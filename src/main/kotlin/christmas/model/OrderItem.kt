@@ -4,26 +4,27 @@ class OrderItem(
     private val menuName: String?,
     private val amount: Int?
 ) : Comparable<OrderItem> {
-
-    private var menuType: String? = null
+    private var menuCategory: String? = null
 
     init {
         require(isParametersNotNull())
         require(isAmountVariableInRange())
         require(isVariableMenu())
 
-        menuType = calculateMenuCategory()
+        menuCategory = calculateMenuCategory()
     }
 
     override fun compareTo(other: OrderItem): Int =
         when {
-            this.menuType == other.menuType -> 0
+            this.menuCategory == other.menuCategory -> 0
             else -> 1
         }
 
-    fun isBeverage(): Boolean = menuType == "Beverage"
+    fun isBeverage(): Boolean = menuCategory == "Beverage"
 
     fun getAmount() : Int = amount!!
+
+    fun getMenuName() : String = menuName!!
 
     private fun isParametersNotNull() = menuName != null && amount != null
 

@@ -3,28 +3,32 @@ package christmas.model
 import OrderItem
 
 class Order(private val order: List<OrderItem>) {
-    private var totalCost : Int = 0
+    private var appetizerTotalCost: Int = 0
+    private var mainDishTotalCost: Int = 0
+    private var dessertTotalCost: Int = 0
+    private var beverageTotalCost: Int = 0
+
     init {
         require(!hasDuplicateMenu())
         require(!hasOnlyBeverageMenu())
         require(!isOverMaxItemCount())
-
-        totalCost = calculateTotalCost()
+        calculateCost()
     }
 
-    fun getOrderItems() : List<OrderItem> = order
+    fun getOrderItems(): List<OrderItem> = order
 
-    fun getTotalCost() : Int = totalCost
+    fun getTotalCost(): Int = appetizerTotalCost + mainDishTotalCost + dessertTotalCost + beverageTotalCost
 
     private fun hasDuplicateMenu(): Boolean = order.size != order.toSet().size
-    private fun hasOnlyBeverageMenu() : Boolean {
+    private fun hasOnlyBeverageMenu(): Boolean {
         order.forEach {
-            if(!it.isBeverage())
+            if (!it.isBeverage())
                 return false
         }
         return true
     }
-    private fun isOverMaxItemCount() : Boolean {
+
+    private fun isOverMaxItemCount(): Boolean {
         var count = 0
         order.forEach {
             count += it.getAmount()
@@ -32,12 +36,16 @@ class Order(private val order: List<OrderItem>) {
         return count > 20
     }
 
-    private fun calculateTotalCost() : Int {
-        var cost = 0
-        order.forEach{
-            cost += it.getMenuCost()
+    private fun calculateCost() {
+        order.forEach {
+            when(it.getMenuCategory()){
+                is MenuType.Beverage ->beverageTotalCost += it.calculateCost()
+                is MenuType.Dessert -> dessertTotalCost += it.calculateCost()
+                is MenuType.MainDish -> mainDishTotalCost += it.calculateCost()
+                is MenuType.Appetizer -> appetizerTotalCost += it.calculateCost()
+                else -> {}
+            }
         }
-        return cost
     }
 
 

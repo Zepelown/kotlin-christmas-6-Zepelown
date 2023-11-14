@@ -1,4 +1,4 @@
-package christmas.view
+package christmas.view.console
 
 import OrderItem
 import christmas.model.Date

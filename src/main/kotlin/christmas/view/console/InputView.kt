@@ -1,9 +1,9 @@
-package christmas.view
+package christmas.view.console
 
 import camp.nextstep.edu.missionutils.Console
 import christmas.model.Date
 import christmas.model.Order
-import christmas.util.InputParser
+import christmas.view.InputParser
 
 class InputView {
     fun readDate() : Date {

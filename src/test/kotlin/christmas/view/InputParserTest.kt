@@ -1,10 +1,8 @@
-package christmas.util
+package christmas.view
 
-import christmas.util.InputParser
-import org.junit.jupiter.api.Assertions
+import christmas.view.InputParser
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest

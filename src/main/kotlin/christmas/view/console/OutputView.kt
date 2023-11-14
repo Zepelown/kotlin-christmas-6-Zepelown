@@ -2,6 +2,7 @@ package christmas.view.console
 
 import OrderItem
 import christmas.model.Date
+import christmas.model.EventCatalog
 import christmas.model.Order
 import christmas.util.StringFormatter
 
@@ -34,7 +35,14 @@ class OutputView {
         println(StringFormatter.formatIntToCurrencyString(order.getTotalCost()))
     }
 
+    fun printGiftEvent(eventCatalog: EventCatalog) {
+        println("\n<증정 메뉴>")
+        println(if (eventCatalog.hasGiftEvent()) "샴페인 1개" else "없음")
+    }
+
+
     private fun printOrderItem(orderItem : OrderItem){
         println("${orderItem.getMenuName()} ${orderItem.getAmount()}개")
     }
+
 }

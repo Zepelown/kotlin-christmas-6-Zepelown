@@ -4,21 +4,18 @@ class EventCatalog(
     private val date: Date,
     private val totalCost: Int
 ) {
-    private val events = ArrayList<EventType>()
+    private val eventCatalog = HashMap<EventType, Int>()
 
     init {
         calculateEventsOnDate()
     }
 
-    fun hasChristmasDeal(): Boolean = events.contains(EventType.CHRISTMAS_DEAL)
+    fun getEventCatalog() = eventCatalog
 
-    fun hasWeekdayDiscount(): Boolean = events.contains(EventType.WEEKDAY_DISCOUNT)
+    fun hasGiftEvent(): Boolean = eventCatalog.contains(EventType.GIFT_EVENT)
 
-    fun hasWeekendDiscount(): Boolean = events.contains(EventType.WEEKEND_DISCOUNT)
-
-    fun hasSpecialDiscount(): Boolean = events.contains(EventType.SPECIAL_DISCOUNT)
-
-    fun hasGiftEvent(): Boolean = events.contains(EventType.GIFT_EVENT)
+    fun hasEvent() : Boolean = !eventCatalog.isEmpty()
+    fun getTotalEventDiscountCost(): Int = eventCatalog.values.sum()
 
     private fun calculateEventsOnDate() {
         calculateEventBasedOnDayOfWeek()
@@ -29,27 +26,27 @@ class EventCatalog(
 
     private fun calculateEventBasedOnDayOfWeek() {
         if (date.isWeekday()) {
-            events.add(EventType.WEEKDAY_DISCOUNT)
+            eventCatalog.put(EventType.WEEKDAY_DISCOUNT, 2023)
             return
         }
-        events.add(EventType.WEEKEND_DISCOUNT)
+        eventCatalog.put(EventType.WEEKEND_DISCOUNT, 2023)
     }
 
     private fun calculateEventBasedOnChristmasDeal() {
         if (date.isChristmasSeason()) {
-            events.add(EventType.CHRISTMAS_DEAL)
+            eventCatalog.put(EventType.CHRISTMAS_DEAL, date.getDate() * 100 + 1000)
         }
     }
 
     private fun calculateEventBasedOnSpecialDiscount() {
         if (date.isSpecialDay()) {
-            events.add(EventType.SPECIAL_DISCOUNT)
+            eventCatalog.put(EventType.SPECIAL_DISCOUNT, 1000)
         }
     }
 
     private fun calculateEventBasedOnGiftEvent() {
         if (totalCost >= 120000){
-            events.add(EventType.GIFT_EVENT)
+            eventCatalog.put(EventType.GIFT_EVENT, 25000)
         }
     }
 

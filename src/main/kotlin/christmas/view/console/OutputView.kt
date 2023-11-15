@@ -53,7 +53,7 @@ class OutputView {
 
     fun printTotalEventDiscountCost(eventCatalog: EventCatalog){
         println("\n<총혜택 금액>")
-        if (!eventCatalog.hasEvent()){
+        if (eventCatalog.getTotalEventDiscountCost() == 0){
             println("0원")
             return
         }

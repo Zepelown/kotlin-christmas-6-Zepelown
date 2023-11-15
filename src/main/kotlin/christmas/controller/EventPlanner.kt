@@ -1,4 +1,4 @@
-package christmas
+package christmas.controller
 
 import christmas.model.Date
 import christmas.model.EventCatalog

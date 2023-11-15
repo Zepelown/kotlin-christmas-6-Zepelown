@@ -1,5 +1,7 @@
 package christmas
 
+import christmas.controller.EventPlanner
+
 fun main() {
     startEventPlanner()
 }

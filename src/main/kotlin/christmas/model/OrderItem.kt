@@ -1,5 +1,3 @@
-
-
 class OrderItem(
     private val menuName: String?,
     private val amount: Int?
@@ -17,9 +15,7 @@ class OrderItem(
 
     fun getMenuName(): String = menuType.menuName
 
-    fun calculateCost(): Int =  menuType.cost * amount!!
-
-    fun getMenuType(): MenuType = menuType
+    fun calculateCost(): Int = menuType.cost * amount!!
 
     fun isDessert(): Boolean = menuType is MenuType.Dessert
 
@@ -48,7 +44,5 @@ class OrderItem(
         return menuName == other.menuName
     }
 
-    override fun hashCode(): Int {
-        return menuName?.hashCode() ?: 0
-    }
+    override fun hashCode(): Int = menuName?.hashCode() ?: 0
 }

@@ -35,25 +35,25 @@ class EventCatalog(
 
         if (totalAmount == 0) return
 
-        eventCatalog.put(eventType, 2023 * totalAmount)
+        addEvent(eventType, 2023 * totalAmount)
     }
 
 
     private fun calculateEventBasedOnChristmasDeal() {
         if (date.isChristmasSeason()) {
-            eventCatalog.put(EventType.CHRISTMAS_DEAL, date.getDate() * 100 + 900)
+            addEvent(EventType.CHRISTMAS_DEAL, date.getDate() * 100 + 900)
         }
     }
 
     private fun calculateEventBasedOnSpecialDiscount() {
         if (date.isSpecialDay()) {
-            eventCatalog.put(EventType.SPECIAL_DISCOUNT, 1000)
+            addEvent(EventType.SPECIAL_DISCOUNT, 1000)
         }
     }
 
     private fun calculateEventBasedOnGiftEvent() {
         if (totalCost >= 120000){
-            eventCatalog.put(EventType.GIFT_EVENT, 25000)
+            addEvent(EventType.GIFT_EVENT, 25000)
         }
     }
 
@@ -65,6 +65,11 @@ class EventCatalog(
             else -> "없음"
         }
     }
+
+    private fun addEvent(eventType: EventType, cost: Int) {
+        eventCatalog[eventType] = cost
+    }
+
     enum class EventType(val displayName:String) {
         CHRISTMAS_DEAL("크리스마스 디데이 할인"),
         WEEKDAY_DISCOUNT("평일 할인"),

@@ -32,7 +32,7 @@ class OutputView {
 
     fun printTotalCost(order: Order){
         println("\n<할인 전 총주문 금액>")
-        println(StringFormatter.formatIntToCurrencyString(order.getTotalCost()))
+        println(StringFormatter.parseToCost(order.getTotalCost()))
     }
 
     fun printGiftEvent(eventCatalog: EventCatalog) {
@@ -40,6 +40,16 @@ class OutputView {
         println(if (eventCatalog.hasGiftEvent()) "샴페인 1개" else "없음")
     }
 
+    fun printEventBenefits(eventCatalog: EventCatalog){
+        println("\n<혜택 내역>")
+        if (!eventCatalog.hasEvent()){
+            println("없음")
+            return
+        }
+        eventCatalog.getEventCatalog().forEach {event, discountCost ->
+            println("${event.displayName}: ${StringFormatter.parseToBenefitCost(discountCost)}")
+        }
+    }
 
     private fun printOrderItem(orderItem : OrderItem){
         println("${orderItem.getMenuName()} ${orderItem.getAmount()}개")

@@ -2,7 +2,8 @@ package christmas.model
 
 class EventCatalog(
     private val date: Date,
-    private val totalCost: Int
+    private val totalCost: Int,
+    private val order: Order
 ) {
     private val eventCatalog = HashMap<EventType, Int>()
 
@@ -26,10 +27,10 @@ class EventCatalog(
 
     private fun calculateEventBasedOnDayOfWeek() {
         if (date.isWeekday()) {
-            eventCatalog.put(EventType.WEEKDAY_DISCOUNT, 2023)
+            eventCatalog.put(EventType.WEEKDAY_DISCOUNT, 2023 * order.getTotalDessertAmount())
             return
         }
-        eventCatalog.put(EventType.WEEKEND_DISCOUNT, 2023)
+        eventCatalog.put(EventType.WEEKEND_DISCOUNT, 2023 * order.getTotalMainDishAmount())
     }
 
     private fun calculateEventBasedOnChristmasDeal() {
@@ -50,11 +51,11 @@ class EventCatalog(
         }
     }
 
-    enum class EventType {
-        CHRISTMAS_DEAL,
-        WEEKDAY_DISCOUNT,
-        WEEKEND_DISCOUNT,
-        SPECIAL_DISCOUNT,
-        GIFT_EVENT
+    enum class EventType(val displayName:String) {
+        CHRISTMAS_DEAL("크리스마스 디데이 할인"),
+        WEEKDAY_DISCOUNT("평일 할인"),
+        WEEKEND_DISCOUNT("주말 할인"),
+        SPECIAL_DISCOUNT("특별 할인"),
+        GIFT_EVENT("증정 이벤트")
     }
 }

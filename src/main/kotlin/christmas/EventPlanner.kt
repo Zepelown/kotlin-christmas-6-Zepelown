@@ -18,7 +18,7 @@ class EventPlanner {
         outputView.printStartMessage()
         val date = readDate()
         val order = readOrder()
-        val eventCatalog = EventCatalog(date,order.getTotalCost())
+        val eventCatalog = EventCatalog(date,order.getTotalCost(), order)
         displayEventBenefits(date, order, eventCatalog)
     }
 
@@ -37,5 +37,6 @@ class EventPlanner {
         outputView.printOrder(order)
         outputView.printTotalCost(order)
         outputView.printGiftEvent(eventCatalog)
+        outputView.printEventBenefits(eventCatalog)
     }
 }

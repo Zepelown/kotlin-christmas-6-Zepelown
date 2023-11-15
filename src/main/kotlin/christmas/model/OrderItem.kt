@@ -1,33 +1,38 @@
-import christmas.model.MenuCategory
-import christmas.model.MenuType
+
 
 class OrderItem(
     private val menuName: String?,
     private val amount: Int?
 ) : Comparable<OrderItem> {
+    private var menuType: MenuType
+
     init {
         require(isParametersNotNull())
         require(isAmountVariableInRange())
         require(isVariableMenu())
+        menuType = calculateMenuCategory()
     }
 
     fun getAmount(): Int = amount!!
 
-    fun getMenuName(): String = menuName!!
+    fun getMenuName(): String = menuType.menuName
 
-    fun calculateCost(): Int = MenuType.getMenuCost(menuName!!) * amount!!
+    fun calculateCost(): Int =  menuType.cost * amount!!
 
-    fun getMenuCategory(): MenuCategory = calculateMenuCategory()
+    fun getMenuType(): MenuType = menuType
 
-    fun isBeverage(): Boolean = if (calculateMenuCategory() is MenuType.Beverage) true else false
+    fun isDessert(): Boolean = menuType is MenuType.Dessert
 
+    fun isBeverage(): Boolean = menuType is MenuType.Beverage
+
+    fun isMainDish(): Boolean = menuType is MenuType.MainDish
     private fun isParametersNotNull() = menuName != null && amount != null
 
     private fun isAmountVariableInRange() = amount in 1..20
 
     private fun isVariableMenu() = menuName?.let { MenuType.isMenuExists(it) } ?: false
 
-    private fun calculateMenuCategory(): MenuCategory = MenuType.getMenuCategory(menuName!!)
+    private fun calculateMenuCategory(): MenuType = MenuType.getMenuType(menuName!!)
     override fun compareTo(other: OrderItem): Int =
         when {
             this.menuName == other.menuName -> 0

@@ -18,6 +18,8 @@ class EventCatalog(
     fun hasEvent() : Boolean = !eventCatalog.isEmpty()
     fun getTotalEventDiscountCost(): Int = eventCatalog.values.sum()
 
+    fun getEventBadge() : String = calculateEventBadge(getTotalEventDiscountCost())
+
     private fun calculateEventsOnDate() {
         calculateEventBasedOnDayOfWeek()
         calculateEventBasedOnChristmasDeal()
@@ -53,6 +55,14 @@ class EventCatalog(
         }
     }
 
+    private fun calculateEventBadge(totalEventDiscountCost : Int) : String {
+        return when{
+            totalEventDiscountCost >= 5000 -> "별"
+            totalEventDiscountCost >= 10000 -> "트리"
+            totalEventDiscountCost >= 20000 -> "산타"
+            else -> "없음"
+        }
+    }
     enum class EventType(val displayName:String) {
         CHRISTMAS_DEAL("크리스마스 디데이 할인"),
         WEEKDAY_DISCOUNT("평일 할인"),

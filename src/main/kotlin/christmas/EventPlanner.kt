@@ -40,5 +40,6 @@ class EventPlanner {
         outputView.printEventBenefits(eventCatalog)
         outputView.printTotalEventDiscountCost(eventCatalog)
         outputView.printDiscountedTotalAmount(order,eventCatalog)
+        outputView.printEventBadge(eventCatalog)
     }
 }

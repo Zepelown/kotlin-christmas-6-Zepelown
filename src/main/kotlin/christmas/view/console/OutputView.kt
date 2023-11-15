@@ -66,8 +66,15 @@ class OutputView {
         println(parsedCost)
     }
 
+    fun printEventBadge(eventCatalog: EventCatalog){
+        println("\n<12월 이벤트 배지>")
+        println(eventCatalog.getEventBadge())
+    }
+
     private fun printOrderItem(orderItem : OrderItem){
         println("${orderItem.getMenuName()} ${orderItem.getAmount()}개")
     }
+
+
 
 }

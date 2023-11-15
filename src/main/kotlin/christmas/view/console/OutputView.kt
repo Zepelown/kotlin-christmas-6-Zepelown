@@ -46,6 +46,7 @@ class OutputView {
             println("없음")
             return
         }
+
         eventCatalog.getEventCatalog().forEach { event, discountCost ->
             println("${event.displayName}: ${StringFormatter.parseToBenefitCost(discountCost)}")
         }
@@ -53,7 +54,7 @@ class OutputView {
 
     fun printTotalEventDiscountCost(eventCatalog: EventCatalog) {
         println("\n<총혜택 금액>")
-        if (eventCatalog.getTotalEventDiscountCost() == 0) {
+        if (!eventCatalog.hasEvent()) {
             println("0원")
             return
         }

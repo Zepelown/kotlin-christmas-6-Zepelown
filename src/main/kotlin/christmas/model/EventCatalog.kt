@@ -8,7 +8,9 @@ class EventCatalog(
     private val eventCatalog = HashMap<EventType, Int>()
 
     init {
-        calculateEventsOnDate()
+        if (totalCost >= 10000) {
+            calculateEventsOnDate()
+        }
     }
 
     fun getEventCatalog() = eventCatalog

@@ -39,7 +39,7 @@ class EventCatalog(
 
     private fun calculateEventBasedOnChristmasDeal() {
         if (date.isChristmasSeason()) {
-            eventCatalog.put(EventType.CHRISTMAS_DEAL, date.getDate() * 100 + 1000)
+            eventCatalog.put(EventType.CHRISTMAS_DEAL, date.getDate() * 100 + 900)
         }
     }
 

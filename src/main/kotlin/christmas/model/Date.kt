@@ -9,13 +9,7 @@ class Date(private val date: Int?) {
 
     fun getDate() : Int = date!!
 
-    fun isWeekday() : Boolean{
-        if(dayOfWeek in DayOfWeek.SUNDAY .. DayOfWeek.THURSDAY) {
-            return true
-        }
-        return false
-    }
-
+    fun isWeekday() : Boolean = dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.FRIDAY
     fun isChristmasSeason() = if(date!! <= 25) true else false
 
     fun isSpecialDay() : Boolean{
@@ -35,7 +29,7 @@ class Date(private val date: Int?) {
             4 -> DayOfWeek.MONDAY
             5 -> DayOfWeek.TUESDAY
             6 -> DayOfWeek.WEDNESDAY
-            else -> DayOfWeek.FRIDAY
+            else -> throw IllegalArgumentException()
         }
     }
     private fun isVariableInRange() = if(date!! >= 1 && date <= 31) true else false

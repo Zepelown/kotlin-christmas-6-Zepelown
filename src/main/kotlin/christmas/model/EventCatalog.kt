@@ -57,9 +57,9 @@ class EventCatalog(
 
     private fun calculateEventBadge(totalEventDiscountCost : Int) : String {
         return when{
-            totalEventDiscountCost >= 5000 -> "별"
-            totalEventDiscountCost >= 10000 -> "트리"
             totalEventDiscountCost >= 20000 -> "산타"
+            totalEventDiscountCost >= 10000 -> "트리"
+            totalEventDiscountCost >= 5000 -> "별"
             else -> "없음"
         }
     }

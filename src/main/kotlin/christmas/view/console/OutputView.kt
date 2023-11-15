@@ -51,6 +51,15 @@ class OutputView {
         }
     }
 
+    fun printTotalEventDiscountCost(eventCatalog: EventCatalog){
+        println("\n<총혜택 금액>")
+        if (!eventCatalog.hasEvent()){
+            println("0원")
+            return
+        }
+        println(StringFormatter.parseToBenefitCost( eventCatalog.getTotalEventDiscountCost()))
+    }
+
     private fun printOrderItem(orderItem : OrderItem){
         println("${orderItem.getMenuName()} ${orderItem.getAmount()}개")
     }

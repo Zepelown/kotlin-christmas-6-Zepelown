@@ -1,13 +1,13 @@
-package christmas.view
+package christmas.test
 
 import camp.nextstep.edu.missionutils.test.NsTest
 import christmas.main
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
+import org.junit.jupiter.api.Nested
 
-class UnitAppTest : NsTest() {
-
+class OutputExceptionTest : NsTest() {
     @Test
     fun `주문 메뉴 정상 표시`(){
         assertSimpleTest {
@@ -90,8 +90,6 @@ class UnitAppTest : NsTest() {
             )
         }
     }
-
-
 
 
 

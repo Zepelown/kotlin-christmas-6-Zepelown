@@ -1,4 +1,4 @@
-package christmas.view
+package christmas.test
 
 import christmas.view.InputParser
 import org.junit.jupiter.api.DisplayName
@@ -9,10 +9,10 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 @DisplayName("사용자의 입력 테스트")
-class InputParserTest {
+class UserInputTest {
     @Nested
     @DisplayName("날짜 입력 테스트")
-    class DateInputTest {
+    inner class DateInputTest {
         @ParameterizedTest
         @ValueSource(strings = ["-1", "100", "0"])
         fun `1 ~ 31 범위에 벗어나는 날짜 입력 시`(input: String) {

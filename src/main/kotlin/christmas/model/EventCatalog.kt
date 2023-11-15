@@ -26,12 +26,14 @@ class EventCatalog(
     }
 
     private fun calculateEventBasedOnDayOfWeek() {
-        if (date.isWeekday()) {
-            eventCatalog.put(EventType.WEEKDAY_DISCOUNT, 2023 * order.getTotalDessertAmount())
-            return
-        }
-        eventCatalog.put(EventType.WEEKEND_DISCOUNT, 2023 * order.getTotalMainDishAmount())
+        val eventType = if (date.isWeekday()) EventType.WEEKDAY_DISCOUNT else EventType.WEEKEND_DISCOUNT
+        val totalAmount = if (date.isWeekday()) order.getTotalDessertAmount() else order.getTotalMainDishAmount()
+
+        if (totalAmount == 0) return
+
+        eventCatalog.put(eventType, 2023 * totalAmount)
     }
+
 
     private fun calculateEventBasedOnChristmasDeal() {
         if (date.isChristmasSeason()) {

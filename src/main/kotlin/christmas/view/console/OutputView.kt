@@ -60,6 +60,12 @@ class OutputView {
         println(StringFormatter.parseToBenefitCost( eventCatalog.getTotalEventDiscountCost()))
     }
 
+    fun printDiscountedTotalAmount(order: Order, eventCatalog: EventCatalog){
+        println("\n<할인 후 예상 결제 금액>")
+        val parsedCost = StringFormatter.parseToCost(order.getTotalCost() - eventCatalog.getTotalEventDiscountCost())
+        println(parsedCost)
+    }
+
     private fun printOrderItem(orderItem : OrderItem){
         println("${orderItem.getMenuName()} ${orderItem.getAmount()}개")
     }
